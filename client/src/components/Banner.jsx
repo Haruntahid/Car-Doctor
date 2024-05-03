@@ -8,10 +8,10 @@ import { FaArrowLeft } from "react-icons/fa";
 function Banner() {
   return (
     <>
-      <div className="carousel w-full lg:h-[600px] mt-12">
+      <div className="carousel w-full lg:h-[600px] mt-12 rounded-2xl">
         <div id="slide1" className="carousel-item relative w-full">
-          <img src={img1} className="w-full rounded-2xl" />
-          <div className="absolute justify-start  pt-20 pl-20 w-full bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0.00)] h-full rounded-2xl">
+          <img src={img1} className="w-full" />
+          <div className="absolute justify-start  pt-20 pl-20 w-full bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0.00)] h-full">
             <div className="w-4/12">
               <p className="text-6xl font-bold text-white leading-[75px]">
                 Affordable Price For Car Servicing
