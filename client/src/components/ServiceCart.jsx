@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 
 function ServiceCart({ service }) {
   const { title, img, price } = service;
-  console.log(service);
   return (
     <>
       <div className="card p-6 bg-base-100 shadow-xl border-2 border-[#E8E8E8]">
