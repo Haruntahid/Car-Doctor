@@ -1,9 +1,28 @@
+import { useContext } from "react";
 import img from "../assets/images/login/login.svg";
 import { FaGoogle } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../Provider/AuthProvider";
 
 function Login() {
+  //handel signIn
+  const { logIn } = useContext(AuthContext);
+  // handel signup
+  const handelSignIn = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    // sign up
+    logIn(email, password)
+      .then((result) => {
+        console.log(result.user);
+        form.reset();
+      })
+      .catch((error) => console.log(error));
+  };
+
   return (
     <>
       <div className="flex items-center">
@@ -14,7 +33,7 @@ function Login() {
         <div className="w-1/2 ">
           <div className="w-full max-w-lg p-16 space-y-3 rounded-xl bg-white text-[#444] border-2 border-[#D0D0D0]">
             <h1 className="text-4xl font-bold text-center">Login</h1>
-            <form className="space-y-6">
+            <form onSubmit={handelSignIn} className="space-y-6">
               <div className="space-y-1 text-sm">
                 <label className="block text-[#444]  font-semibold">
                   Email
