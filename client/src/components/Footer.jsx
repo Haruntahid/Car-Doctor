@@ -4,7 +4,7 @@ function Footer() {
   return (
     <>
       <div>
-        <footer className="footer p-10 bg-[#151515] text-[#E8E8E8] ">
+        <footer className="footer p-10 mt-24 bg-[#151515] text-[#E8E8E8] ">
           <aside>
             <img src={logo} alt="" />
             <p>

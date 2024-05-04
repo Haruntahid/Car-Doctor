@@ -3,7 +3,7 @@ import { IoArrowForward } from "react-icons/io5";
 import { Link } from "react-router-dom";
 
 function ServiceCart({ service }) {
-  const { title, img, price } = service;
+  const { _id, title, img, price } = service;
   return (
     <>
       <div className="card p-6 bg-base-100 shadow-xl border-2 border-[#E8E8E8]">
@@ -15,7 +15,10 @@ function ServiceCart({ service }) {
           <p className="font-semibold text-xl text-[#FF3811]">
             Price : ${price}
           </p>
-          <Link className="hover:bg-gray-300 w-8 h-8 rounded-full flex items-center justify-center">
+          <Link
+            to={`/checkout/${_id}`}
+            className="hover:bg-gray-300 w-8 h-8 rounded-full flex items-center justify-center"
+          >
             <IoArrowForward size={25} className="text-[#FF3811]" />
           </Link>
         </div>
