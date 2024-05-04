@@ -1,8 +1,18 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from "../assets/logo.svg";
 import { GiShoppingBag } from "react-icons/gi";
+import { useContext } from "react";
+import { AuthContext } from "../Provider/AuthProvider";
 
 function Header() {
+  const { user, logOut } = useContext(AuthContext);
+
+  // handel LOgout
+  const handelLogOut = () => {
+    logOut()
+      .then()
+      .catch((err) => console.log(err));
+  };
   return (
     <>
       <div className="navbar bg-base-100">
@@ -75,6 +85,18 @@ function Header() {
                   Contact
                 </NavLink>
               </li>
+              {user ? (
+                <button
+                  onClick={handelLogOut}
+                  className="btn btn-outline btn-error ml-5"
+                >
+                  Log out
+                </button>
+              ) : (
+                <Link to={"/login"} className="btn btn-outline btn-error ml-5">
+                  Log in
+                </Link>
+              )}
             </ul>
           </div>
           <Link to={"/"} className="text-xl">
@@ -120,6 +142,14 @@ function Header() {
                 Contact
               </NavLink>
             </li>
+            <li>
+              <NavLink
+                to={"/orders"}
+                className={({ isActive }) => (isActive ? "text-[#FF3811]" : "")}
+              >
+                Orders
+              </NavLink>
+            </li>
           </ul>
         </div>
         <div className="navbar-end">
@@ -129,6 +159,18 @@ function Header() {
           <Link className="bg-transparent border border-[#FF3811] text-[#FF3811] px-8 py-3 rounded-md font-semibold">
             Appointment
           </Link>
+          {user ? (
+            <button
+              onClick={handelLogOut}
+              className="btn btn-outline btn-error ml-5"
+            >
+              Log out
+            </button>
+          ) : (
+            <Link to={"/login"} className="btn btn-outline btn-error ml-5">
+              Log in
+            </Link>
+          )}
         </div>
       </div>
     </>
