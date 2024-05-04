@@ -1,13 +1,17 @@
 import PropTypes from "prop-types";
 
-function OrderRow({ booking }) {
-  const { img, service, price, date, name, email } = booking;
+function OrderRow({ booking, handelDelete, handelConfirm }) {
+  const { _id, img, service, price, date, name, email, status } = booking;
+
   return (
     <>
       <tr>
         <th>
           <label>
-            <button className="btn btn-square btn-error">
+            <button
+              onClick={() => handelDelete(_id)}
+              className="btn btn-square btn-error"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6"
@@ -49,7 +53,16 @@ function OrderRow({ booking }) {
         <td>${price}</td>
         <td>{date}</td>
         <th>
-          <button className="btn btn-ghost btn-xs">details</button>
+          {status === "confirm" ? (
+            <span className="text-green-500">confirmed</span>
+          ) : (
+            <button
+              onClick={() => handelConfirm(_id)}
+              className="btn btn-ghost btn-xs"
+            >
+              Confirm
+            </button>
+          )}
         </th>
       </tr>
     </>
@@ -58,6 +71,8 @@ function OrderRow({ booking }) {
 
 OrderRow.propTypes = {
   booking: PropTypes.object,
+  handelDelete: PropTypes.func,
+  handelConfirm: PropTypes.func,
 };
 
 export default OrderRow;
