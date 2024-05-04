@@ -58,6 +58,20 @@ async function run() {
       res.send(result);
     });
 
+    // update orders
+    app.patch("/orders/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) };
+      const updatedBooking = req.body;
+      const updatedDoc = {
+        $set: {
+          status: updatedBooking.status,
+        },
+      };
+      const result = await orderCollection.updateOne(query, updatedDoc);
+      res.send(result);
+    });
+
     // get all orders
     app.get("/orders", async (req, res) => {
       let query = {};
